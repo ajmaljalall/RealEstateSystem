@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Files">
+      <UniqueIdentifier>{a6bd6db4-e1fb-4cab-9032-0c5dd7502b02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Models">
+      <UniqueIdentifier>{039e9210-b937-4061-8544-d99f943c2f56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{576b30ab-130b-493f-b430-64027d8f706e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Trenser.RealEstateSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Admin.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Agent.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Agreement.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Buyer.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Payment.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Property.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Request.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
+    <ClCompile Include="RealEstateController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="User.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
+    <ClCompile Include="FileManager.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="User.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Property.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Buyer.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Request.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Payment.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Agreement.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Agent.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Admin.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="FileManager.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="RealEstateController.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="UsersFile.txt">
+      <Filter>Files</Filter>
+    </Text>
+    <Text Include="AgreementsFile.txt">
+      <Filter>Files</Filter>
+    </Text>
+    <Text Include="Payments.txt">
+      <Filter>Files</Filter>
+    </Text>
+    <Text Include="Propertys.txt">
+      <Filter>Files</Filter>
+    </Text>
+    <Text Include="RequestsFile.txt">
+      <Filter>Files</Filter>
+    </Text>
+  </ItemGroup>
+</Project>
