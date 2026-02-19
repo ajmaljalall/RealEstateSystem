@@ -28,11 +28,5 @@ string Agreement::getDate()
 {
 	return m_date;
 }
-void Agreement::generateAgreement()
-{
-}
 
-void Agreement::displayAgreement()
-{
-}
 

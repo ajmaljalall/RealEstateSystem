@@ -40,10 +40,7 @@ string Payment::getType()
 {
 	return m_type;
 }
-void Payment::makePayment()
+double Payment::getAmount()
 {
-}
-void Payment::verifyPayment()
-{
-
+	return m_amount;
 }

@@ -58,6 +58,11 @@ void RealEstateController::registerAsBuyer()
     string userId, userName, password;
     cout << endl << "Enter UserId: ";
     cin >> userId;
+    if (isUserIdAlreadyExists(userId))
+    {
+        cout << "User ID already exists!" << endl;
+        return;
+    }
     cout << "Enter user name: ";
     cin >> userName;
     cout << "Enter password: ";
@@ -71,6 +76,11 @@ void RealEstateController::registerAsAgent()
     string userId, userName, password;
     cout << endl << "Enter User Id: ";
     cin >> userId;
+    if (isUserIdAlreadyExists(userId))
+    {
+        cout << "User ID already exists!" << endl;
+        return;
+    }
     cout << "Enter user name: ";
     cin >> userName;
     cout << "Enter Password: ";
@@ -90,6 +100,11 @@ void RealEstateController::registerAsAdmin()
         cout << endl << "---- Security check success ----" << endl;
         cout << "Enter User Id: ";
         cin >> userId;
+        if (isUserIdAlreadyExists(userId))
+        {
+            cout << "User ID already exists!" << endl;
+            return;
+        }
         cout << "Enter user name: ";
         cin >> userName;
         cout << "Enter Password: ";
@@ -110,14 +125,13 @@ void RealEstateController::login()
     cout << "Enter password: ";
     cin >> password;
     int decision = 1;
-    User* currentUser;
     auto iterator = m_allUsers.begin();
     while (iterator != m_allUsers.end())
     {
         if ((*iterator)->getUserId() == userId && (*iterator)->getPassword() == password)
         {
             cout << "--- login successful ---" << endl << endl;
-            currentUser = *iterator;
+            User* currentUser = *iterator;
             while (decision == 1)
             {
                 currentUser->displayMenu();
@@ -322,10 +336,20 @@ void RealEstateController::addProperty(User* user)
     double price;
     cout << "Enter Property ID: ";
     cin >> propertyId;
+    if (isPropertyIdAlreadyExists(propertyId))
+    {
+        cout << "Property ID already exists!" << endl;
+        return;
+    }
     cout << "Category: ";
     cin >> category;
     cout << "Price: ";
     cin >> price;
+    if (!isValidPositivePrice(price))
+    {
+        cout << "Invalid price!" << endl;
+        return;
+    }
     cout << "Agent Id: ";
     cin >> agentId;
     cout << "Status: ";
@@ -334,16 +358,6 @@ void RealEstateController::addProperty(User* user)
     cin >> location;
     Property* property = new Property(propertyId, category, price, agentId, location, status);
     m_allProperties.push_back(property);
-    /*if (user->getUserType() == "Admin")
-    {
-        Admin* admin = dynamic_cast<Admin*>(user);
-        admin->addProperty(property);
-    }
-    else if (user->getUserType() == "Agent")
-    {
-        Agent* agent = dynamic_cast<Agent*>(user);
-        agent->addProperty(property);
-    }*/
 }
 
 void RealEstateController::viewAllProperty()
@@ -362,22 +376,6 @@ void RealEstateController::viewAllProperty()
 void RealEstateController::viewMyProperty(User* user)
 {
     cout << "--------- Properties Added By " << user->getUserId() << " ----------" << endl;
-    /*vector<Property*> properties;
-    if (user->getUserType() == "Admin")
-    {
-        Admin* admin = dynamic_cast<Admin*>(user);
-        properties = (admin->getProperties());
-    }
-    else if (user->getUserType() == "Agent")
-    {
-        Agent* agent = dynamic_cast<Agent*>(user);
-        properties = (agent->getProperties());
-    }
-    else if (user->getUserType() == "Buyer")
-    {
-        Agent* buyer = dynamic_cast<Agent*>(user);
-        properties = (buyer->getProperties());
-    }*/
     for (auto iteratorTwo = m_allProperties.begin(); iteratorTwo != m_allProperties.end(); iteratorTwo++)
     {
         if ((*iteratorTwo)->getAgentId() == user->getUserId())
@@ -393,11 +391,13 @@ void RealEstateController::viewMyProperty(User* user)
 
 void RealEstateController::viewOwnedProperty(User* user)
 {
-    cout << "<--- Properties Owned by " << user->getUserName() << endl;
+    cout << "<--- Properties Owned by " << user->getUserName() << " --->" << endl;
+    bool found = false;
     for (auto iterator = m_allAgreements.begin(); iterator != m_allAgreements.end(); iterator++)
     {
         if ((*iterator)->getBuyerId() == user->getUserId())
         {
+            found = true;
             for (auto iteratorTwo = m_allProperties.begin(); iteratorTwo != m_allProperties.end(); iteratorTwo++)
             {
                 if ((*iteratorTwo)->getPropertyId() == (*iterator)->getPropertyId())
@@ -411,6 +411,10 @@ void RealEstateController::viewOwnedProperty(User* user)
                 }
             }
         }
+    }
+    if (!found)
+    {
+        cout << "No owned properties found." << endl;
     }
 }
 
@@ -463,6 +467,37 @@ void RealEstateController::searchByPrice()
     }
 }
 
+void RealEstateController::searchPropertiesByAgentId()
+{
+    string agentId;
+    cout << "Enter Agent ID: ";
+    cin >> agentId;
+    for (auto property : m_allProperties)
+    {
+        if (property->getAgentId() == agentId)
+        {
+            cout << "Property ID: " << property->getPropertyId() << endl;
+            cout << "Price: " << property->getPrice() << endl;
+            cout << "Category: " << property->getCategory() << endl;
+            cout << "Location: " << property->getLocation() << endl << endl;
+        }
+    }
+}
+
+void RealEstateController::displayBuyerPaymentHistory(User* user)
+{
+    cout << "Payment History:" << endl;
+    for (auto payment : m_allPayments)
+    {
+        if (payment->getBuyerId() == user->getUserId())
+        {
+            cout << "Payment ID: " << payment->getPaymentId() << endl;
+            cout << "Amount: " << payment->getAmount() << endl;
+            cout << "Status: " << payment->getStatus() << endl << endl;
+        }
+    }
+}
+
 void RealEstateController::requestToBuy(User* user)
 {
     cout << "<-------- Apply Request ------->" << endl;
@@ -471,27 +506,25 @@ void RealEstateController::requestToBuy(User* user)
     cin >> propertyId;
     cout << "Enter Request ID: ";
     cin >> requestId;
+    if (isRequestIdAlreadyExists(requestId))
+    {
+        cout << "Request ID already exists!" << endl;
+        return;
+    }
+    for (auto request : m_allRequests)
+    {
+        if (request->getPropertyId() == propertyId && request->getCustomerId() == user->getUserId())
+        {
+            cout << "You have already requested this property!" << endl;
+            return;
+        }
+    }
     for (auto iterator = m_allProperties.begin(); iterator != m_allProperties.end(); iterator++)
     {
         if ((*iterator)->getPropertyId() == propertyId)
         {
-            m_allRequests.push_back(new Request(propertyId, requestId, user->getUserId(), (*iterator)->getAgentId(), "Pending"));
-            /*Buyer* buyer = dynamic_cast<Buyer*>(user);
-            vector<Request*> copyOfRequests = buyer->getRequests();
-            copyOfRequests.push_back(request);
-            buyer->setRequests(copyOfRequests);
-            for (auto iteratorTwo = m_allUsers.begin(); iteratorTwo != m_allUsers.end(); iteratorTwo++)
-            {
-                if ((*iteratorTwo)->getUserId() == (*iterator)->getAgentId())
-                {
-                    Agent* agent = dynamic_cast<Agent*>((*iteratorTwo));
-                    copyOfRequests = agent->getRequests();
-                    copyOfRequests.push_back(request);
-                    agent->setRequests(copyOfRequests);
-                    cout << "Request created with Id " << requestId << " to Agent " << (*iterator)->getAgentId() << endl;
-                    return;
-                }
-            }*/
+            m_allRequests.push_back(new Request(requestId, propertyId, user->getUserId(), (*iterator)->getAgentId(), "Pending"));
+            cout << "Request created successfully!" << endl;
             return;
         }
     }
@@ -509,7 +542,7 @@ void RealEstateController::viewMyRequests(User* user)
             {
                 cout << "Request ID: " << (*iterator)->getRequestId() << endl;
                 cout << "Property ID: " << (*iterator)->getPropertyId() << endl;
-                cout << "Customer ID: " << (*iterator)->getCustomerId() << endl;
+                cout << "Buyer ID: " << (*iterator)->getCustomerId() << endl;
                 cout << "Agent ID: " << (*iterator)->getAgentId() << endl;
                 cout << "Status: " << (*iterator)->getStatus() << endl << endl;
             }
@@ -534,8 +567,6 @@ void RealEstateController::viewMyRequests(User* user)
 void RealEstateController::deleteProperty(User* user)
 {
     string propertyId, userId;
-    /*Agent* agent = dynamic_cast<Agent*>(user);
-    vector<Property*> properties = agent->getProperties();*/
     userId = user->getUserId();
     cout << "Enter property Id: ";
     cin >> propertyId;
@@ -543,7 +574,7 @@ void RealEstateController::deleteProperty(User* user)
     {
         if ((*iterator)->getPropertyId() == propertyId && (*iterator)->getAgentId() == userId)
         {
-            cout << "<----- Property " << propertyId << " deleted" << endl;
+            cout << "<----- Property " << propertyId << " deleted ----->" << endl;
             delete *iterator;
             m_allProperties.erase(iterator);
             return;
@@ -558,31 +589,13 @@ void RealEstateController::approveRequest(User* user)
     cout << "Enter request ID: ";
     cin >> requestId;
     userId = user->getUserId();
-    /*Agent* agent = dynamic_cast<Agent*>(user);
-    vector<Request*> requests = agent->getRequests();*/
     for (auto iterator = m_allRequests.begin(); iterator != m_allRequests.end(); iterator++)
     {
         if ((*iterator)->getRequestId() == requestId && (*iterator)->getAgentId() == userId)
         {
             (*iterator)->setStatus("Approved");
-            cout << "------> Request Approved" << endl;
+            cout << "<------ Request Approved ------>" << endl;
             return;
-            /*string buyerId = (*iterator)->getCustomerId();
-            for (auto iteratorTwo = m_allUsers.begin(); iteratorTwo != m_allUsers.end(); iterator++)
-            {
-                if ((*iteratorTwo)->getUserId() == buyerId)
-                {
-                    Buyer* buyer = dynamic_cast<Buyer*>((*iteratorTwo));
-                    vector<Request*> buyerRequests = buyer->getRequests();
-                    for (auto iteratorThree = buyerRequests.begin(); iteratorThree != buyerRequests.end(); iteratorThree++)
-                    {
-                        if ((*iteratorThree)->getRequestId() == requestId)
-                        {
-                            ((*iteratorThree)->setStatus("Approved"));
-                        }
-                    }
-                }
-            }*/
         }
     }
     cout << "No request with ID : " << requestId << " found in Agent " << userId << endl;
@@ -610,7 +623,7 @@ void RealEstateController::rejectRequest(User* user)
 void RealEstateController::makePayment(User* user)
 {
     string paymentId, requestId, buyerId, agentId, type, status = "Pending", propertyId;
-    double amount = 0.0;
+    double amount = 0;
     cout << "Enter request Id: ";
     cin >> requestId;
     buyerId = user->getUserId();
@@ -618,8 +631,18 @@ void RealEstateController::makePayment(User* user)
     {
         if ((*iterator)->getRequestId() == requestId && (*iterator)->getCustomerId() == buyerId)
         {
+            if ((*iterator)->getStatus() != "Approved")
+            {
+                cout << "Request not approved yet!" << endl;
+                return;
+            }
             cout << "Payment ID: ";
             cin >> paymentId;
+            if (isPaymentIdAlreadyExists(paymentId))
+            {
+                cout << "Payment ID already exists!" << endl;
+                return;
+            }
             agentId = (*iterator)->getAgentId();
             for (auto iteratorTwo = m_allProperties.begin(); iteratorTwo != m_allProperties.end(); iteratorTwo++)
             {
@@ -651,6 +674,16 @@ void RealEstateController::verifyPayment(User* user)
         if ((*iterator)->getAgentId() == user->getUserId() && (*iterator)->getPaymentId() == paymentId)
         {
             cout << "--- Payment Verified ---" << endl;
+            (*iterator)->setStatus("Verified");
+            string propertyId = (*iterator)->getPropertyId();
+            for (auto property : m_allProperties)
+            {
+                if (property->getPropertyId() == propertyId)
+                {
+                    property->setStatus("Sold");
+                    break;
+                }
+            }
             requestId = (*iterator)->getRequestId();
             buyerId = (*iterator)->getBuyerId();
             agentId = (*iterator)->getAgentId();
@@ -673,7 +706,6 @@ void RealEstateController::generateAgreement(User* user, string paymentId, strin
     cout << "Date: ";
     cin >> date;
     cout << "<---- Agreement Signed ---->" << endl;
-    cout << "<-------- Agreement ------->" << endl;
     m_allAgreements.push_back(new Agreement(agreementId, paymentId, buyerId, agentId, propertyId, terms, date));
 }
 
@@ -693,10 +725,10 @@ void RealEstateController::displayAgreements(User* user)
             cout << "Terms : " << (*iterator)->getTerms() << endl;
             cout << "Date : " << (*iterator)->getDate() << endl;
         }
-        else if (user->getUserType() == "Buyer" && userId == (*iterator)->getAgentId())
+        else if (user->getUserType() == "Buyer" && userId == (*iterator)->getBuyerId())
         {
             cout << "Agreement Id: " << (*iterator)->getAgreementId() << endl;
-            cout << "Payment Id: " << (*iterator)->getRequestId() << endl;
+            cout << "Request Id: " << (*iterator)->getRequestId() << endl;
             cout << "Buyer Id: " << (*iterator)->getBuyerId() << endl;
             cout << "Agent Id: " << (*iterator)->getAgentId() << endl;
             cout << "Property Id: " << (*iterator)->getPropertyId() << endl;
@@ -707,5 +739,82 @@ void RealEstateController::displayAgreements(User* user)
     if (m_allAgreements.empty())
     {
         cout << "No Agrements found for User : " << userId << endl;
+    }
+}
+
+bool RealEstateController::isUserIdAlreadyExists(string userId)
+{
+    for (auto user : m_allUsers)
+    {
+        if (user->getUserId() == userId)
+        {
+            return true;
+        }
+    }       
+    return false;
+}
+
+bool RealEstateController::isPropertyIdAlreadyExists(string propertyId)
+{
+    for (auto property : m_allProperties)
+    {
+        if (property->getPropertyId() == propertyId)
+        {
+            return true;
+        }
+    }       
+    return false;
+}
+
+bool RealEstateController::isRequestIdAlreadyExists(string requestId)
+{
+    for (auto request : m_allRequests)
+    {
+        if (request->getRequestId() == requestId)
+        {
+            return true;
+        }
+    }    
+    return false;
+}
+
+bool RealEstateController::isPaymentIdAlreadyExists(string paymentId)
+{
+    for (auto payment : m_allPayments)
+    {
+        if (payment->getPaymentId() == paymentId)
+        {
+            return true;
+        }
+    }       
+    return false;
+}
+
+bool RealEstateController::isValidPositivePrice(double price)
+{
+    return price > 0;
+}
+
+RealEstateController::~RealEstateController()
+{
+    for (auto user : m_allUsers)
+    {
+        delete user;
+    }
+    for (auto property : m_allProperties)
+    {
+        delete property;
+    }
+    for (auto request : m_allRequests)
+    {
+        delete request;
+    }
+    for (auto payment : m_allPayments)
+    {
+        delete payment;
+    }
+    for (auto agreement : m_allAgreements)
+    {
+        delete agreement;
     }
 }

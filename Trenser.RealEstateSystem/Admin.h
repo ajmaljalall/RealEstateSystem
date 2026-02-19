@@ -10,19 +10,10 @@ class Admin
 {
 private:
 	string m_adminId;
-	vector<Property*> m_properties;
 public:
-	Admin() : m_adminId(""), m_properties() {};
+	Admin() : m_adminId("") {};
 	Admin(string adminId, string userId, string userName, string password, string userType) : m_adminId(adminId), User(userId, userName, password, userType) {};
 	string getAdminId();
-	vector<Property*> getProperties();
-	void addBuyer();
-	void removeBuyer();
-	void addAgent();
-	void removeAgent();
-	void addProperty(Property* property);
-	void displayAllProperty();
-	void displayMyProperty();
 	void displayMenu() override;
 };
 

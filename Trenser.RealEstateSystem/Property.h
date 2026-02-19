@@ -24,6 +24,5 @@ public:
 	void setPrice(double price);
 	void setLocation(string location);
 	void setStatus(string status);
-	void displayDetails();
 };
 

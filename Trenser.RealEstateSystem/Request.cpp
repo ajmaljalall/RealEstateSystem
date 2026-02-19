@@ -20,23 +20,7 @@ string Request::getStatus()
 {
 	return m_status;
 }
-void Request::setRequestId(string requestId)
-{
-
-}
-void Request::setPropertyId(string propertyId)
-{
-
-}
-void Request::setCustomerId(string customerId)
-{
-
-}
-void Request::setAgentId(string agentId)
-{
-
-}
 void Request::setStatus(string status)
 {
-
+	m_status = status;
 }

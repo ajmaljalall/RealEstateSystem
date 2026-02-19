@@ -18,9 +18,5 @@ public:
     string getCustomerId(); 
     string getAgentId(); 
     string getStatus();  
-    void setRequestId(string requestId); 
-    void setPropertyId(string propertyId); 
-    void setCustomerId(string customerId); 
-    void setAgentId(string agentId); 
     void setStatus(string status);
 };

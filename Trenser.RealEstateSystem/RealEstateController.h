@@ -24,7 +24,7 @@ private:
 
 public:
     RealEstateController() : m_allUsers(), m_allProperties(), m_allRequests(), m_allPayments(), m_allAgreements() {};
-    /*~RealEstateController();*/
+    ~RealEstateController();
 
     void mainMenu();
     void login();
@@ -60,4 +60,13 @@ public:
     void verifyPayment(User* user);
     void generateAgreement(User* user, string paymentId, string buyerId, string agentId, string propertyId);
     void displayAgreements(User* user);
+
+    bool isUserIdAlreadyExists(string userId);
+    bool isPropertyIdAlreadyExists(string propertyId);
+    bool isRequestIdAlreadyExists(string requestId);
+    bool isPaymentIdAlreadyExists(string paymentId);
+    bool isValidPositivePrice(double price);
+
+    void searchPropertiesByAgentId();
+    void displayBuyerPaymentHistory(User* user);
 };

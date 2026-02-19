@@ -41,6 +41,3 @@ void Property::setStatus(string status)
 	m_status = status;
 }
 
-void Property::displayDetails()
-{
-}

@@ -22,7 +22,5 @@ public:
 	string getPropertyId();
 	string getTerms();
 	string getDate();
-	void generateAgreement();
-	void displayAgreement();
 };
 

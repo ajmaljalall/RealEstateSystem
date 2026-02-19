@@ -23,10 +23,9 @@ public:
 	string getType();
 	string getStatus();
 	string getPropertyId();
+	double getAmount();
 	void setAmount(double amount);
 	void setType(string type);
 	void setStatus(string status);
-	void makePayment();
-	void verifyPayment();
 };
 
