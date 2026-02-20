@@ -24,3 +24,11 @@ void User::setPassword(string password)
 {
 	m_password = password;
 }
+string User::getStatus()
+{
+	return m_status;
+}
+void User::setStatus(string status)
+{
+	m_status = status;
+}

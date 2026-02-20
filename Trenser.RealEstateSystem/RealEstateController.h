@@ -28,10 +28,14 @@ public:
 
     void mainMenu();
     void login();
+    User* authenticate(const string& userId, const string& password);
+    void userSession(User* currentUser);
+    string generateUserId();
     void registerUser();
     void registerAsBuyer();
     void registerAsAgent();
     void registerAsAdmin();
+    void displayAllUsers();
 
     void chooseOption(User* user, int& choice);
     void callAdminMethod(User* user, int& choice);
@@ -44,12 +48,14 @@ public:
     void addProperty(User* user);
     void viewAllProperty();
     void viewMyProperty(User* user);
+    void displayAgreementDetails(Agreement* agreement);
 
     void searchAvailableProperties();
     void searchByCategory();
     void searchByPrice();
     void requestToBuy(User* user);
     void viewMyRequests(User* user);
+    void printRequestDetails(Request* requestPointer);
     void viewOwnedProperty(User* user);
 
     void deleteProperty(User* user);
