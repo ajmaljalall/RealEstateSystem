@@ -1,0 +1,6 @@
+U01,ajmal,ajmal123,Buyer,Active
+U02,akish,akish123,Agent,Active
+U03,amal,amal123,Admin,Active
+U04,ashlin,ashlin123,Admin,Active
+U05,avinash,avinash123,Buyer,Active
+U06,jibin,jibin123,Agent,Active

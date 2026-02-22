@@ -3,7 +3,6 @@
 #include <vector>
 #include <string>
 using namespace std;
-
 #include "User.h"
 #include "Buyer.h"
 #include "Admin.h"
@@ -12,6 +11,7 @@ using namespace std;
 #include "Request.h"
 #include "Payment.h"
 #include "Agreement.h"
+#include "FileManager.h"
 
 class RealEstateController
 {
@@ -21,21 +21,56 @@ private:
     vector<Request*> m_allRequests;
     vector<Payment*> m_allPayments;
     vector<Agreement*> m_allAgreements;
-
+    FileManager* m_fileManager;
 public:
-    RealEstateController() : m_allUsers(), m_allProperties(), m_allRequests(), m_allPayments(), m_allAgreements() {};
+    RealEstateController() : m_allUsers(), m_allProperties(), m_allRequests(), m_allPayments(), m_allAgreements(), m_fileManager(nullptr) {};
+    RealEstateController(FileManager* fileManager) : m_fileManager(fileManager) {};
     ~RealEstateController();
+
+    void reloadingDataToVectorsInClass();
+    void reassignPropertiesToAgent();
+    void reassignPropertiesToBuyer();
+    void reassignRequestsToAgentAndBuyer();
+    void reassignPaymentsToAgentAndBuyer();
+    void reassignAgreementsToAgentAndBuyer();
 
     void mainMenu();
     void login();
     User* authenticate(const string& userId, const string& password);
     void userSession(User* currentUser);
+
+    void handleAdminUserManagement(int choice);
+    void handleAdminPropertyManagement(User* user, int choice);
+    void handleAdminReports(int choice);
+    void handleAdminAccountSettings(User* user, int choice);
+
+    void handleAgentPropertyManagement(User* user, int choice);
+    void handleAgentRequestManagement(User* user, int choice);
+    void handleAgentPaymentManagement(User* user, int choice);
+    void handleAgentAccountSettings(User* user, int choice);
+
+    void handleBuyerPropertySearch(int choice);
+    void handleBuyerRequests(User* user, int choice);
+    void handleBuyerPayments(User* user, int choice);
+    void handleBuyerAccountSettings(User* user, int choice);
+
+    string generateNextId(string prefix, int currentSize);
     string generateUserId();
+    string generateRequestId();
+    string generatePropertyId();
+    string generatePaymentId();
+    string generateAgreementId();
+
     void registerUser();
     void registerAsBuyer();
     void registerAsAgent();
     void registerAsAdmin();
+    void changeUserName(User* user);
+    void changePassword(User* user);
     void displayAllUsers();
+
+    Agent* findAgentById(string agentId);
+    Buyer* findBuyerById(string buyerId);
 
     void chooseOption(User* user, int& choice);
     void callAdminMethod(User* user, int& choice);
@@ -64,7 +99,7 @@ public:
 
     void makePayment(User* user);
     void verifyPayment(User* user);
-    void generateAgreement(User* user, string paymentId, string buyerId, string agentId, string propertyId);
+    void generateAgreement(User* user, string paymentId, string buyerId, string agentId, string propertyId, Buyer* buyer, Agent* agent);
     void displayAgreements(User* user);
 
     bool isUserIdAlreadyExists(string userId);
@@ -75,4 +110,19 @@ public:
 
     void searchPropertiesByAgentId();
     void displayBuyerPaymentHistory(User* user);
+
+
+    void displaySystemSummary();
+    void displayAllPayments();
+    void displayAllAgreements();
+
+    void displayAgentPaymentHistory(User* user);
+    void displaySoldProperties(User* user);
+
+    void cancelBuyerRequest(User* user);
+    void viewApprovedRequests(User* user);
+    void viewRejectedRequests(User* user);
+
+    void loadData();
+    void saveData();
 };

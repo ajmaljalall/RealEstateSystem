@@ -1,0 +1,2 @@
+P01,R01,U01,U02,70000,Full,Verified,PR01
+P02,R03,U01,U02,90000,Advance,Verified,PR06

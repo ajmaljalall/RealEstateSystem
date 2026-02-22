@@ -15,5 +15,6 @@ public:
 	Admin(string adminId, string userId, string userName, string password, string userType) : m_adminId(adminId), User(userId, userName, password, userType) {};
 	string getAdminId();
 	void displayMenu() override;
+	~Admin() {}
 };
 

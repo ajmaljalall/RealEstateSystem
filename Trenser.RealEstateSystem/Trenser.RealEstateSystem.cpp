@@ -11,12 +11,11 @@ int main()
 {
     try
     {
-        RealEstateController realEstateController;
-        realEstateController.mainMenu();
-    }
-    catch (const exception& e)
-    {
-        cout << "Exception : " << e.what() << endl;
+        FileManager fileManager;
+        RealEstateController controller(&fileManager);
+        controller.loadData(); 
+        controller.mainMenu();
+        controller.saveData(); 
     }
     catch (...)
     {

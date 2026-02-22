@@ -24,5 +24,6 @@ public:
 	void setPassword(string password);
 	string getUserType();
 	virtual void displayMenu() {};
+	virtual ~User() {}
 };
 

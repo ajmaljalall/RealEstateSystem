@@ -1,0 +1,6 @@
+PR01,Villa,70000,U02,TVM,Sold
+PR02,Villa,80000,U02,TVM,Available
+PR03,Flat,50000,U02,TVM,Sold
+PR04,Flat,30000,U02,TVM,Unavailable
+PR05,Plot,60000,U02,TVM,Unavailable
+PR06,Plot,90000,U02,TVM,Sold
