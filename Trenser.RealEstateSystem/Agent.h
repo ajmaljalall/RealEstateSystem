@@ -1,3 +1,5 @@
+//----------------------------------------------Author : Ajmal J S----------------------------------------------
+//----------------------------------------------Date : 16-02-2026-----------------------------------------------
 #pragma once
 #include <iostream>
 #include <vector>
@@ -22,14 +24,10 @@ public:
 	Agent(string agentId, string userId, string userName, string password, string userType) : m_agentId(agentId), User(userId, userName, password, userType) {};
 	string getAgentId();
 	void displayMenu() override;
-
-	// ADD FUNCTIONS
 	void addProperty(Property* property);
 	void addRequest(Request* request);
 	void addPayment(Payment* payment);
 	void addAgreement(Agreement* agreement);
-
-	// GETTERS
 	vector<Property*>& getProperties();
 	vector<Request*>& getRequests();
 	vector<Payment*>& getPayments();

@@ -1,3 +1,5 @@
 R01,PR01,U01,U02,Approved
 R02,PR02,U01,U02,Rejected
-R03,PR06,U01,U02,Approved
+R03,PR03,U01,U02,Rejected
+R04,PR04,U01,U02,Cancelled
+R05,PR06,U01,U02,Approved

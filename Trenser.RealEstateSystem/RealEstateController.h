@@ -1,3 +1,5 @@
+//----------------------------------------------Author : Ajmal J S----------------------------------------------
+//----------------------------------------------Date : 16-02-2026-----------------------------------------------
 #pragma once
 #include <iostream>
 #include <vector>
@@ -12,6 +14,7 @@ using namespace std;
 #include "Payment.h"
 #include "Agreement.h"
 #include "FileManager.h"
+#include "Status.h"
 
 class RealEstateController
 {
@@ -80,23 +83,23 @@ public:
     void removeAdmin();
     void removeBuyer();
     void removeAgent();
-    void addProperty(User* user);
-    void viewAllProperty();
-    void viewMyProperty(User* user);
-    void displayAgreementDetails(Agreement* agreement);
 
+    void addProperty(User* user);
+    void deleteProperty(User* user);
+    void viewRequests(User* user);
+    void approveRequest(User* user);
+    void rejectRequest(User* user);
+    void viewAddedProperties(User* user);
+    void viewAllProperty();
     void searchAvailableProperties();
     void searchByCategory();
     void searchByPrice();
     void requestToBuy(User* user);
-    void viewMyRequests(User* user);
+    
     void printRequestDetails(Request* requestPointer);
     void viewOwnedProperty(User* user);
-
-    void deleteProperty(User* user);
-    void approveRequest(User* user);
-    void rejectRequest(User* user);
-
+    void displayAgreementDetails(Agreement* agreement);
+    
     void makePayment(User* user);
     void verifyPayment(User* user);
     void generateAgreement(User* user, string paymentId, string buyerId, string agentId, string propertyId, Buyer* buyer, Agent* agent);
@@ -107,6 +110,8 @@ public:
     bool isRequestIdAlreadyExists(string requestId);
     bool isPaymentIdAlreadyExists(string paymentId);
     bool isValidPositivePrice(double price);
+    bool isAgentIdValid(string agentId);
+    bool isPaymentAlreadyVerified(string paymentId);
 
     void searchPropertiesByAgentId();
     void displayBuyerPaymentHistory(User* user);

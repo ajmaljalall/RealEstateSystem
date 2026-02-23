@@ -24,11 +24,11 @@ void User::setPassword(string password)
 {
 	m_password = password;
 }
-string User::getStatus()
+UserStatus User::getStatus()
 {
 	return m_status;
 }
-void User::setStatus(string status)
+void User::setStatus(UserStatus status)
 {
 	m_status = status;
 }

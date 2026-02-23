@@ -2,7 +2,7 @@
 
 void FileManager::loadUsers(vector<User*>& users)
 {
-    ifstream file(m_usersFile);
+    ifstream file(M_USERSFILE);
     string line;
     while (getline(file, line))
     {
@@ -31,7 +31,7 @@ void FileManager::loadUsers(vector<User*>& users)
 
 void FileManager::saveUsers(vector<User*>& users)
 {
-    ofstream file(m_usersFile);
+    ofstream file(M_USERSFILE);
     for (auto user : users)
     {
         file << user->getUserId() << ","
@@ -45,7 +45,7 @@ void FileManager::saveUsers(vector<User*>& users)
 
 void FileManager::loadProperties(vector<Property*>& properties)
 {
-    ifstream file(m_propertiesFile);
+    ifstream file(M_PROPERTIESFILE);
     string line;
     while (getline(file, line))
     {
@@ -65,7 +65,7 @@ void FileManager::loadProperties(vector<Property*>& properties)
 
 void FileManager::saveProperties(vector<Property*>& properties)
 {
-    ofstream file(m_propertiesFile);
+    ofstream file(M_PROPERTIESFILE);
     for (auto property : properties)
     {
         file << property->getPropertyId() << ","
@@ -80,7 +80,7 @@ void FileManager::saveProperties(vector<Property*>& properties)
 
 void FileManager::loadRequests(vector<Request*>& requests)
 {
-    ifstream file(m_requestsFile);
+    ifstream file(M_REQUESTSFILE);
     string line;
     while (getline(file, line))
     {
@@ -98,7 +98,7 @@ void FileManager::loadRequests(vector<Request*>& requests)
 
 void FileManager::saveRequests(vector<Request*>& requests)
 {
-    ofstream file(m_requestsFile);
+    ofstream file(M_REQUESTSFILE);
     for (auto request : requests)
     {
         file << request->getRequestId() << ","
@@ -112,7 +112,7 @@ void FileManager::saveRequests(vector<Request*>& requests)
 
 void FileManager::loadPayments(vector<Payment*>& payments)
 {
-    ifstream file(m_paymentsFile);
+    ifstream file(M_PAYMENTSFILE);
     string line;
     while (getline(file, line))
     {
@@ -134,7 +134,7 @@ void FileManager::loadPayments(vector<Payment*>& payments)
 
 void FileManager::savePayments(vector<Payment*>& payments)
 {
-    ofstream file(m_paymentsFile);
+    ofstream file(M_PAYMENTSFILE);
     for (auto payment : payments)
     {
         file << payment->getPaymentId() << ","
@@ -151,7 +151,7 @@ void FileManager::savePayments(vector<Payment*>& payments)
 
 void FileManager::loadAgreements(vector<Agreement*>& agreements)
 {
-    ifstream file(m_agreementsFile);
+    ifstream file(M_AGREEMENTSFILE);
     string line;
     while (getline(file, line))
     {
@@ -171,7 +171,7 @@ void FileManager::loadAgreements(vector<Agreement*>& agreements)
 
 void FileManager::saveAgreements(vector<Agreement*>& agreements)
 {
-    ofstream file(m_agreementsFile);
+    ofstream file(M_AGREEMENTSFILE);
     for (auto agreement : agreements)
     {
         file << agreement->getAgreementId() << ","

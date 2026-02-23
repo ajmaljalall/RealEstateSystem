@@ -1,3 +1,5 @@
+//----------------------------------------------Author : Ajmal J S----------------------------------------------
+//----------------------------------------------Date : 16-02-2026-----------------------------------------------
 #pragma once
 #include <iostream>
 #include <vector>
@@ -22,13 +24,10 @@ public:
 	Buyer(string buyerId, string userId, string userName, string password, string userType) : m_buyerId(buyerId), User(userId, userName, password, userType) {};
 	string getBuyerId();
 	void displayMenu() override;
-
 	void addRequest(Request* request);
 	void addPayment(Payment* payment);
 	void addAgreement(Agreement* agreement);
 	void addOwnedProperty(Property* property);
-
-	// GETTERS
 	vector<Request*>& getRequests();
 	vector<Payment*>& getPayments();
 	vector<Agreement*>& getAgreements();

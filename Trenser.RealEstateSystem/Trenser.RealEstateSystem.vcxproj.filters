@@ -57,6 +57,9 @@
     <ClCompile Include="FileManager.cpp">
       <Filter>Utility</Filter>
     </ClCompile>
+    <ClCompile Include="Status.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="User.h">
@@ -88,6 +91,9 @@
     </ClInclude>
     <ClInclude Include="RealEstateController.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Status.h">
+      <Filter>Models</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

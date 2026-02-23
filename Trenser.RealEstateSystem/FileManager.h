@@ -1,3 +1,5 @@
+//----------------------------------------------Author : Ajmal J S----------------------------------------------
+//----------------------------------------------Date : 16-02-2026-----------------------------------------------
 #pragma once
 #include <iostream>
 #include <vector>
@@ -17,20 +19,17 @@ using namespace::std;
 class FileManager
 {
 private:
-	string m_usersFile = "UsersFile.txt";
-	string m_paymentsFile = "Payments.txt";
-	string m_propertiesFile = "Propertys.txt";
-	string m_requestsFile = "RequestsFile.txt";
-	string m_agreementsFile = "AgreementsFile.txt";
+	const string M_USERSFILE = "UsersFile.txt";
+	const string M_PAYMENTSFILE = "Payments.txt";
+	const string M_PROPERTIESFILE = "Propertys.txt";
+	const string M_REQUESTSFILE = "RequestsFile.txt";
+	const string M_AGREEMENTSFILE = "AgreementsFile.txt";
 public:
-    // LOAD FUNCTIONS
     void loadUsers(vector<User*>& users);
     void loadProperties(vector<Property*>& properties);
     void loadRequests(vector<Request*>& requests);
     void loadPayments(vector<Payment*>& payments);
     void loadAgreements(vector<Agreement*>& agreements);
-
-    // SAVE FUNCTIONS
     void saveUsers(vector<User*>& users);
     void saveProperties(vector<Property*>& properties);
     void saveRequests(vector<Request*>& requests);
