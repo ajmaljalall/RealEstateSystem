@@ -76,9 +76,9 @@ public:
     Buyer* findBuyerById(string buyerId);
 
     void chooseOption(User* user, int& choice);
-    void callAdminMethod(User* user, int& choice);
-    void callAgentMethod(User* user, int& choice);
-    void callBuyerMethod(User* user, int& choice);
+    void callAdminMenu(User* user, int& choice);
+    void callAgentMenu(User* user, int& choice);
+    void callBuyerMenu(User* user, int& choice);
 
     void removeAdmin();
     void removeBuyer();

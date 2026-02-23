@@ -38,7 +38,7 @@ void FileManager::saveUsers(vector<User*>& users)
             << user->getUserName() << ","
             << user->getPassword() << ","
             << user->getUserType() << ","
-            << user->getStatus() << endl;
+            << convertingUserStatusToString(user->getStatus()) << endl;
     }
     file.close();
 }
@@ -58,7 +58,7 @@ void FileManager::loadProperties(vector<Property*>& properties)
         getline(ss, location, ',');
         getline(ss, status, ',');
         double price = stod(priceString);
-        properties.push_back(new Property(id, category, price, agentId, location, status));
+        properties.push_back(new Property(id, category, price, agentId, location, stringToPropertyStatus(status)));
     }
     file.close();
 }
@@ -73,8 +73,8 @@ void FileManager::saveProperties(vector<Property*>& properties)
             << property->getPrice() << ","
             << property->getAgentId() << ","
             << property->getLocation() << ","
-            << property->getStatus() << endl;
-    }
+            << convertingPropertyStatusToString(property->getStatus()) << endl;
+    } 
     file.close();
 }
 
@@ -91,7 +91,7 @@ void FileManager::loadRequests(vector<Request*>& requests)
         getline(ss, buyerId, ',');
         getline(ss, agentId, ',');
         getline(ss, status, ',');
-        requests.push_back(new Request(id, propertyId, buyerId, agentId, status));
+        requests.push_back(new Request(id, propertyId, buyerId, agentId, stringToRequestStatus(status)));
     }
     file.close();
 }
@@ -105,7 +105,7 @@ void FileManager::saveRequests(vector<Request*>& requests)
             << request->getPropertyId() << ","
             << request->getCustomerId() << ","
             << request->getAgentId() << ","
-            << request->getStatus() << endl;
+            << convertingRequestStatusToString(request->getStatus()) << endl;
     }
     file.close();
 }
@@ -127,7 +127,7 @@ void FileManager::loadPayments(vector<Payment*>& payments)
         getline(ss, status, ',');
         getline(ss, propertyId, ',');
         double amount = stod(amountString);
-        payments.push_back(new Payment(id, requestId, buyerId, agentId, amount, type, status, propertyId));
+        payments.push_back(new Payment(id, requestId, buyerId, agentId, amount, type, stringToPaymentStatus(status), propertyId));
     }
     file.close();
 }
@@ -143,7 +143,7 @@ void FileManager::savePayments(vector<Payment*>& payments)
             << payment->getAgentId() << ","
             << payment->getAmount() << ","
             << payment->getType() << ","
-            << payment->getStatus() << ","
+            << convertingPaymentStatusToString(payment->getStatus()) << ","
             << payment->getPropertyId() << endl;
     }
     file.close();

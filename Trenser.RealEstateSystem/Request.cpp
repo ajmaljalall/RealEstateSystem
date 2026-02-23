@@ -16,11 +16,11 @@ string Request::getRequestId()
 {
 	return m_requestId;
 }
-string Request::getStatus()
+RequestStatus Request::getStatus()
 {
 	return m_status;
 }
-void Request::setStatus(string status)
+void Request::setStatus(RequestStatus status)
 {
 	m_status = status;
 }

@@ -12,7 +12,7 @@ string Property::getCategory()
 {
 	return m_category;
 }
-string Property::getStatus()
+PropertyStatus Property::getStatus()
 {
 	return m_status;
 }
@@ -36,7 +36,7 @@ void Property::setPrice(double price)
 {
 	m_price = price;
 }
-void Property::setStatus(string status)
+void Property::setStatus(PropertyStatus status)
 {
 	m_status = status;
 }

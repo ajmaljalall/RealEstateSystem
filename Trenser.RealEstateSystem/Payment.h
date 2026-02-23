@@ -3,6 +3,7 @@
 #pragma once
 #include <iostream>
 using namespace::std;
+#include"Status.h"
 
 class Payment
 {
@@ -13,21 +14,21 @@ private:
 	string m_agentId;
 	double m_amount;
 	string m_type;
-	string m_status;
+	PaymentStatus m_status;
 	string m_propertyId;
 public:
-	Payment() : m_paymentId(""), m_requestId(""), m_buyerId(""), m_agentId(""), m_amount(0), m_type(""), m_status(""), m_propertyId("") {};
-	Payment(string paymentId, string requestId, string buyerId, string agentId, double amount, string type, string status, string propertyId) : m_paymentId(paymentId), m_requestId(requestId), m_buyerId(buyerId), m_agentId(agentId), m_amount(amount), m_type(type), m_status(status), m_propertyId(propertyId) {};
+	Payment() : m_paymentId(""), m_requestId(""), m_buyerId(""), m_agentId(""), m_amount(0), m_type(""), m_status(PaymentStatus::PENDING), m_propertyId("") {};
+	Payment(string paymentId, string requestId, string buyerId, string agentId, double amount, string type, PaymentStatus status, string propertyId) : m_paymentId(paymentId), m_requestId(requestId), m_buyerId(buyerId), m_agentId(agentId), m_amount(amount), m_type(type), m_status(PaymentStatus::PENDING), m_propertyId(propertyId) {};
 	string getPaymentId();
 	string getRequestId();
 	string getBuyerId();
 	string getAgentId();
 	string getType();
-	string getStatus();
+	PaymentStatus getStatus();
 	string getPropertyId();
 	double getAmount();
 	void setAmount(double amount);
 	void setType(string type);
-	void setStatus(string status);
+	void setStatus(PaymentStatus status);
 };
 

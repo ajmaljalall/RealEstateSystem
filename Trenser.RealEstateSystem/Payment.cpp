@@ -16,7 +16,7 @@ string Payment::getRequestId()
 {
 	return m_requestId;
 }
-string Payment::getStatus()
+PaymentStatus Payment::getStatus()
 {
 	return m_status;
 }
@@ -32,7 +32,7 @@ void Payment::setType(string type)
 {
 	m_type = type;
 }
-void Payment::setStatus(string status)
+void Payment::setStatus(PaymentStatus status)
 {
 	m_status = status;
 }
