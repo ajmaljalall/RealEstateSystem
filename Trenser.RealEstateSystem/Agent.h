@@ -21,7 +21,8 @@ private:
 	vector<Agreement*> m_agreements;
 public:
 	Agent() : m_agentId(""), m_properties(), m_receivedPayments(), m_receivedRequests(), m_agreements() {};
-	Agent(string agentId, string userId, string userName, string password, string userType) : m_agentId(agentId), User(userId, userName, password, userType) {};
+	Agent(string agentId, string userId, string userName, string password, string userType, UserStatus status) : m_agentId(agentId), User(userId, userName, password, userType, status) {};
+	static const string AGENT;
 	string getAgentId();
 	void displayMenu() override;
 	void addProperty(Property* property);

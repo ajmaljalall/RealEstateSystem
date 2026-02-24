@@ -1,5 +1,7 @@
 #include "Buyer.h"
 
+const string Buyer::BUYER = "Buyer";
+
 string Buyer::getBuyerId()
 {
 	return m_buyerId;
@@ -39,7 +41,7 @@ vector<Property*>& Buyer::getOwnedProperties()
 void Buyer::displayMenu()
 {
 	cout << "------- Buyer Menu -------" << endl;
-    cout << "1. Search Available Properties\n"
+    cout << "1. Show Available Properties\n"
         << "2. Search By Category\n"
         << "3. Search By Price Range\n"
         << "4. View All Properties\n"
@@ -53,6 +55,8 @@ void Buyer::displayMenu()
         << "12. View Approved Requests\n"
         << "13. View Rejected Requests\n"
         << "14. Change User Name\n"
-        << "15. Change Password\n\n"
+        << "15. Change Password\n"
+        << "16. View Request History\n"
+        << "17. Search Property by Agent Name\n\n"
         << "Enter your choice : ";
 }

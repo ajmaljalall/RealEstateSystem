@@ -14,7 +14,8 @@ private:
 	string m_adminId;
 public:
 	Admin() : m_adminId("") {};
-	Admin(string adminId, string userId, string userName, string password, string userType) : m_adminId(adminId), User(userId, userName, password, userType) {};
+	Admin(string adminId, string userId, string userName, string password, string userType, UserStatus status) : m_adminId(adminId), User(userId, userName, password, userType, status) {};
+	static const string ADMIN;
 	string getAdminId();
 	void displayMenu() override;
 	~Admin() {}

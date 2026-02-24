@@ -12,9 +12,9 @@ int main()
     try
     {
         FileManager fileManager;
-        RealEstateController controller(&fileManager);
+        RealEstateController& controller = RealEstateController::getInstance(&fileManager);
         controller.loadData(); 
-        controller.mainMenu();
+        controller.run();
         controller.saveData(); 
     }
     catch (...)

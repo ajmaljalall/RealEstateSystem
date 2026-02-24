@@ -1,5 +1,7 @@
 #include "Agent.h"
 
+const string Agent::AGENT = "Agent";
+
 string Agent::getAgentId()
 {
 	return m_agentId;
@@ -50,6 +52,7 @@ void Agent::displayMenu()
         << "9. View Payment History\n"
         << "10. View Sold Properties\n"
         << "11. Change User Name\n"
-        << "12. Change Password\n\n"
+        << "12. Change Password\n"
+        << "13. View Request History\n\n"
         << "Enter your choice : ";
 }

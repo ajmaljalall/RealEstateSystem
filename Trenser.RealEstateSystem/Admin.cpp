@@ -1,5 +1,7 @@
 #include "Admin.h"
 
+const string Admin::ADMIN = "Admin";
+
 string Admin::getAdminId()
 {
 	return m_adminId;
@@ -16,7 +18,7 @@ void Admin::displayMenu()
         << "7. Add Property\n"
         << "8. View All Property\n"
         << "9. View Added Property\n"
-        << "10. Search Properties By Agent Id\n"
+        << "10. Search Properties By Agent Name\n"
         << "11. Display All Users\n"
         << "12. View System Summary\n"
         << "13. View All Payments\n"

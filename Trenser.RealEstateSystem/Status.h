@@ -3,14 +3,11 @@
 #include <string>
 using namespace std;
 
-/* ================= USER STATUS ================= */
-
 enum class UserStatus
 {
     ACTIVE,
     INACTIVE
 };
-
 enum class RequestStatus
 {
     PENDING,
@@ -18,20 +15,17 @@ enum class RequestStatus
     REJECTED,
     CANCELLED
 };
-
 enum class PaymentStatus
 {
     PENDING,
     VERIFIED
 };
-
 enum class PropertyStatus
 {
     AVAILABLE,
     UNAVAILABLE,
     SOLD
 };
-
 inline string convertingUserStatusToString(UserStatus status)
 {
     switch (status)
@@ -44,7 +38,6 @@ inline string convertingUserStatusToString(UserStatus status)
         return "";
     }
 }
-
 inline UserStatus stringToUserStatus(const string& str)
 {
     if (str == "Active") 
@@ -57,14 +50,9 @@ inline UserStatus stringToUserStatus(const string& str)
     }
     else
     {
-        return UserStatus::ACTIVE; // default safety
+        return UserStatus::ACTIVE; 
     }
 }
-
-/* ================= REQUEST STATUS ================= */
-
-
-
 inline string convertingRequestStatusToString(RequestStatus status)
 {
     switch (status)
@@ -89,7 +77,6 @@ inline string convertingRequestStatusToString(RequestStatus status)
         return "";
     }
 }
-
 inline RequestStatus stringToRequestStatus(const string& str)
 {
     if (str == "Pending")
@@ -113,9 +100,6 @@ inline RequestStatus stringToRequestStatus(const string& str)
         return RequestStatus::PENDING;
     }
 }
-
-
-
 inline string convertingPaymentStatusToString(PaymentStatus status)
 {
     switch (status)
@@ -132,7 +116,6 @@ inline string convertingPaymentStatusToString(PaymentStatus status)
         return "";
     }
 }
-
 inline PaymentStatus stringToPaymentStatus(const string& str)
 {
     if (str == "Pending")
@@ -148,9 +131,6 @@ inline PaymentStatus stringToPaymentStatus(const string& str)
         return PaymentStatus::PENDING;
     }
 }
-
-/* ================= PROPERTY STATUS ================= */
-
 inline string convertingPropertyStatusToString(PropertyStatus status)
 {
     switch (status)
@@ -171,7 +151,6 @@ inline string convertingPropertyStatusToString(PropertyStatus status)
         return "";
     }
 }
-
 inline PropertyStatus stringToPropertyStatus(const string& str)
 {
     if (str == "Available")

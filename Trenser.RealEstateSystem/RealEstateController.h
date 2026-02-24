@@ -25,9 +25,14 @@ private:
     vector<Payment*> m_allPayments;
     vector<Agreement*> m_allAgreements;
     FileManager* m_fileManager;
-public:
     RealEstateController() : m_allUsers(), m_allProperties(), m_allRequests(), m_allPayments(), m_allAgreements(), m_fileManager(nullptr) {};
     RealEstateController(FileManager* fileManager) : m_fileManager(fileManager) {};
+public:
+    RealEstateController(const RealEstateController&) = delete;
+    RealEstateController& operator=(const RealEstateController&) = delete;
+    static RealEstateController& getInstanceDefault();
+    static RealEstateController& getInstance(FileManager* fileManager);
+    
     ~RealEstateController();
 
     void reloadingDataToVectorsInClass();
@@ -37,12 +42,13 @@ public:
     void reassignPaymentsToAgentAndBuyer();
     void reassignAgreementsToAgentAndBuyer();
 
-    void mainMenu();
+    void run();
     void login();
-    User* authenticate(const string& userId, const string& password);
+    int menuChoiceValidation();
+    User* authenticateUser(const string& userId, const string& password);
     void userSession(User* currentUser);
 
-    void handleAdminUserManagement(int choice);
+    void handleAdminUserManagement(User* user, int choice);
     void handleAdminPropertyManagement(User* user, int choice);
     void handleAdminReports(int choice);
     void handleAdminAccountSettings(User* user, int choice);
@@ -80,7 +86,7 @@ public:
     void callAgentMenu(User* user, int& choice);
     void callBuyerMenu(User* user, int& choice);
 
-    void removeAdmin();
+    void removeAdmin(User* user);
     void removeBuyer();
     void removeAgent();
 
@@ -91,14 +97,17 @@ public:
     void rejectRequest(User* user);
     void viewAddedProperties(User* user);
     void viewAllProperty();
-    void searchAvailableProperties();
+    void showAvailableProperties();
     void searchByCategory();
     void searchByPrice();
     void requestToBuy(User* user);
+    void viewRequestHistory(User* user);
     
     void printRequestDetails(Request* requestPointer);
     void viewOwnedProperty(User* user);
     void displayAgreementDetails(Agreement* agreement);
+    void displayPropertyDetails(Property* property);
+    void displayPaymentDetails(Payment* payment);
     
     void makePayment(User* user);
     void verifyPayment(User* user);
@@ -113,7 +122,7 @@ public:
     bool isAgentIdValid(string agentId);
     bool isPaymentAlreadyVerified(string paymentId);
 
-    void searchPropertiesByAgentId();
+    void searchPropertiesByAgentName();
     void displayBuyerPaymentHistory(User* user);
 
 
@@ -130,4 +139,7 @@ public:
 
     void loadData();
     void saveData();
+
+    string findUserNameById(string id);
+    Property* validatePropertySelection(string& propertyId);
 };

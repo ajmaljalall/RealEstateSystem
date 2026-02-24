@@ -18,7 +18,7 @@ private:
 	string m_propertyId;
 public:
 	Payment() : m_paymentId(""), m_requestId(""), m_buyerId(""), m_agentId(""), m_amount(0), m_type(""), m_status(PaymentStatus::PENDING), m_propertyId("") {};
-	Payment(string paymentId, string requestId, string buyerId, string agentId, double amount, string type, PaymentStatus status, string propertyId) : m_paymentId(paymentId), m_requestId(requestId), m_buyerId(buyerId), m_agentId(agentId), m_amount(amount), m_type(type), m_status(PaymentStatus::PENDING), m_propertyId(propertyId) {};
+	Payment(string paymentId, string requestId, string buyerId, string agentId, double amount, string type, PaymentStatus status, string propertyId) : m_paymentId(paymentId), m_requestId(requestId), m_buyerId(buyerId), m_agentId(agentId), m_amount(amount), m_type(type), m_status(status), m_propertyId(propertyId) {};
 	string getPaymentId();
 	string getRequestId();
 	string getBuyerId();

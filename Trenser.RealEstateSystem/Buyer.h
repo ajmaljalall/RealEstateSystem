@@ -21,7 +21,8 @@ private:
 	vector<Property*> m_ownedProperties;
 public:
 	Buyer() : m_buyerId(""), m_requests(), m_payments(), m_agreements(), m_ownedProperties() {};
-	Buyer(string buyerId, string userId, string userName, string password, string userType) : m_buyerId(buyerId), User(userId, userName, password, userType) {};
+	Buyer(string buyerId, string userId, string userName, string password, string userType, UserStatus status) : m_buyerId(buyerId), User(userId, userName, password, userType, status) {};
+	static const string BUYER;
 	string getBuyerId();
 	void displayMenu() override;
 	void addRequest(Request* request);

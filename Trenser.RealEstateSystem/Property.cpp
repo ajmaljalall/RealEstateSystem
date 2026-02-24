@@ -4,6 +4,10 @@ string Property::getPropertyId()
 {
 	return m_propertyId;
 }
+string Property::getPropertyName()
+{
+	return m_propertyName;
+}
 string Property::getAgentId()
 {
 	return m_agentId;
@@ -39,5 +43,10 @@ void Property::setPrice(double price)
 void Property::setStatus(PropertyStatus status)
 {
 	m_status = status;
+}
+
+void Property::setPropertyName(string name)
+{
+	m_propertyName = name;
 }
 

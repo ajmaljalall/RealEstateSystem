@@ -17,7 +17,7 @@ private:
 	UserStatus m_status;
 public:
 	User() : m_userId(""), m_userName(""), m_password(""), m_userType(""), m_status(UserStatus::ACTIVE) {};
-	User(string userId, string userName, string password, string userType) : m_userId(userId), m_userName(userName), m_password(password), m_userType(userType), m_status(UserStatus::ACTIVE) {};
+	User(string userId, string userName, string password, string userType, UserStatus status) : m_userId(userId), m_userName(userName), m_password(password), m_userType(userType), m_status(status) {};
 	string getUserId();
 	string getUserName();
 	UserStatus getStatus();

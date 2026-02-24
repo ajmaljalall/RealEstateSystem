@@ -13,22 +13,21 @@ void FileManager::loadUsers(vector<User*>& users)
         getline(ss, password, ',');
         getline(ss, type, ',');
         getline(ss, status, ',');
-        if (type == "Buyer")
+        if (type == Buyer::BUYER)
         {
-            users.push_back(new Buyer(id, id, name, password, type));
+            users.push_back(new Buyer(id, id, name, password, type, stringToUserStatus(status)));
         }
-        else if (type == "Agent")
+        else if (type == Agent::AGENT)
         {
-            users.push_back(new Agent(id, id, name, password, type));
+            users.push_back(new Agent(id, id, name, password, type, stringToUserStatus(status)));
         }
         else
         {
-            users.push_back(new Admin(id, id, name, password, type));
+            users.push_back(new Admin(id, id, name, password, type, stringToUserStatus(status)));
         }
     }
     file.close();
 }
-
 void FileManager::saveUsers(vector<User*>& users)
 {
     ofstream file(M_USERSFILE);
@@ -42,7 +41,6 @@ void FileManager::saveUsers(vector<User*>& users)
     }
     file.close();
 }
-
 void FileManager::loadProperties(vector<Property*>& properties)
 {
     ifstream file(M_PROPERTIESFILE);
@@ -50,25 +48,26 @@ void FileManager::loadProperties(vector<Property*>& properties)
     while (getline(file, line))
     {
         stringstream ss(line);
-        string id, category, priceString, agentId, location, status;
+        string id, name, category, priceString, agentId, location, status;
         getline(ss, id, ',');
+        getline(ss, name, ',');
         getline(ss, category, ',');
         getline(ss, priceString, ',');
         getline(ss, agentId, ',');
         getline(ss, location, ',');
         getline(ss, status, ',');
         double price = stod(priceString);
-        properties.push_back(new Property(id, category, price, agentId, location, stringToPropertyStatus(status)));
+        properties.push_back(new Property(id, name, category, price, agentId, location, stringToPropertyStatus(status)));
     }
     file.close();
 }
-
 void FileManager::saveProperties(vector<Property*>& properties)
 {
     ofstream file(M_PROPERTIESFILE);
     for (auto property : properties)
     {
         file << property->getPropertyId() << ","
+            << property->getPropertyName() << ","
             << property->getCategory() << ","
             << property->getPrice() << ","
             << property->getAgentId() << ","
@@ -77,7 +76,6 @@ void FileManager::saveProperties(vector<Property*>& properties)
     } 
     file.close();
 }
-
 void FileManager::loadRequests(vector<Request*>& requests)
 {
     ifstream file(M_REQUESTSFILE);
@@ -95,7 +93,6 @@ void FileManager::loadRequests(vector<Request*>& requests)
     }
     file.close();
 }
-
 void FileManager::saveRequests(vector<Request*>& requests)
 {
     ofstream file(M_REQUESTSFILE);
@@ -109,7 +106,6 @@ void FileManager::saveRequests(vector<Request*>& requests)
     }
     file.close();
 }
-
 void FileManager::loadPayments(vector<Payment*>& payments)
 {
     ifstream file(M_PAYMENTSFILE);
@@ -131,7 +127,6 @@ void FileManager::loadPayments(vector<Payment*>& payments)
     }
     file.close();
 }
-
 void FileManager::savePayments(vector<Payment*>& payments)
 {
     ofstream file(M_PAYMENTSFILE);
@@ -148,7 +143,6 @@ void FileManager::savePayments(vector<Payment*>& payments)
     }
     file.close();
 }
-
 void FileManager::loadAgreements(vector<Agreement*>& agreements)
 {
     ifstream file(M_AGREEMENTSFILE);
@@ -168,7 +162,6 @@ void FileManager::loadAgreements(vector<Agreement*>& agreements)
     }
     file.close();
 }
-
 void FileManager::saveAgreements(vector<Agreement*>& agreements)
 {
     ofstream file(M_AGREEMENTSFILE);

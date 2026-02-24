@@ -1,6 +1,5 @@
-PR01,Villa,50000,U02,TVM,Sold
-PR02,Villa,80000,U02,TVM,Available
-PR03,Flat,70000,U02,TVM,Sold
-PR04,Flat,30000,U02,TVM,Unavailable
-PR05,Plot,80000,U02,TVM,Unavailable
-PR06,Flat,120000,U02,Kollam,Sold
+PR01,,Villa,30000,U02,TVM,Unavailable
+PR02,Project Atom 01,Villa,30000,U02,TVM,Sold
+PR03,Project CodeX,Flat,70000,U02,TVM,Sold
+PR04,Project Alexis,Flat,90000,U02,TVM,Available
+PR05,North Street 2,Plot,30000,U02,TVM,Available
