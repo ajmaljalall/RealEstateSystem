@@ -12,7 +12,7 @@ string Property::getAgentId()
 {
 	return m_agentId;
 }
-string Property::getCategory()
+CategoryType Property::getCategory()
 {
 	return m_category;
 }
@@ -28,7 +28,7 @@ string Property::getLocation()
 {
 	return m_location;
 }
-void Property::setCategory(string category)
+void Property::setCategory(CategoryType category)
 {
 	m_category = category;
 }

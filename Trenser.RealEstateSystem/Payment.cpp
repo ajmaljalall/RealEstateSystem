@@ -28,7 +28,7 @@ void Payment::setAmount(double amount)
 {
 	m_amount = amount;
 }
-void Payment::setType(string type)
+void Payment::setType(PaymentType type)
 {
 	m_type = type;
 }
@@ -36,7 +36,7 @@ void Payment::setStatus(PaymentStatus status)
 {
 	m_status = status;
 }
-string Payment::getType()
+PaymentType Payment::getType()
 {
 	return m_type;
 }

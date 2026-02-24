@@ -57,7 +57,7 @@ void FileManager::loadProperties(vector<Property*>& properties)
         getline(ss, location, ',');
         getline(ss, status, ',');
         double price = stod(priceString);
-        properties.push_back(new Property(id, name, category, price, agentId, location, stringToPropertyStatus(status)));
+        properties.push_back(new Property(id, name,stringToCategoryType(category), price, agentId, location, stringToPropertyStatus(status)));
     }
     file.close();
 }
@@ -68,7 +68,7 @@ void FileManager::saveProperties(vector<Property*>& properties)
     {
         file << property->getPropertyId() << ","
             << property->getPropertyName() << ","
-            << property->getCategory() << ","
+            << convertingCategoryTypeToString(property->getCategory()) << ","
             << property->getPrice() << ","
             << property->getAgentId() << ","
             << property->getLocation() << ","
@@ -100,7 +100,7 @@ void FileManager::saveRequests(vector<Request*>& requests)
     {
         file << request->getRequestId() << ","
             << request->getPropertyId() << ","
-            << request->getCustomerId() << ","
+            << request->getBuyerId() << ","
             << request->getAgentId() << ","
             << convertingRequestStatusToString(request->getStatus()) << endl;
     }
@@ -123,7 +123,7 @@ void FileManager::loadPayments(vector<Payment*>& payments)
         getline(ss, status, ',');
         getline(ss, propertyId, ',');
         double amount = stod(amountString);
-        payments.push_back(new Payment(id, requestId, buyerId, agentId, amount, type, stringToPaymentStatus(status), propertyId));
+        payments.push_back(new Payment(id, requestId, buyerId, agentId, amount, stringToPaymentType(type), stringToPaymentStatus(status), propertyId));
     }
     file.close();
 }
@@ -137,7 +137,7 @@ void FileManager::savePayments(vector<Payment*>& payments)
             << payment->getBuyerId() << ","
             << payment->getAgentId() << ","
             << payment->getAmount() << ","
-            << payment->getType() << ","
+            << convertingPaymentTypeToString((payment->getType())) << ","
             << convertingPaymentStatusToString(payment->getStatus()) << ","
             << payment->getPropertyId() << endl;
     }

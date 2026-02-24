@@ -26,6 +26,19 @@ enum class PropertyStatus
     UNAVAILABLE,
     SOLD
 };
+enum class CategoryType
+{
+    VILLA,
+    FLAT,
+    PLOT,
+    WAREHOUSE,
+    SHOWROOM
+};
+enum class PaymentType
+{
+    FULL,
+    ADVANCE
+};
 inline string convertingUserStatusToString(UserStatus status)
 {
     switch (status)
@@ -38,13 +51,13 @@ inline string convertingUserStatusToString(UserStatus status)
         return "";
     }
 }
-inline UserStatus stringToUserStatus(const string& str)
+inline UserStatus stringToUserStatus(const string& inputString)
 {
-    if (str == "Active") 
+    if (inputString == "Active")
     {
         return UserStatus::ACTIVE;
     }
-    if (str == "Inactive")
+    if (inputString == "Inactive")
     {
         return UserStatus::INACTIVE;
     }
@@ -77,21 +90,21 @@ inline string convertingRequestStatusToString(RequestStatus status)
         return "";
     }
 }
-inline RequestStatus stringToRequestStatus(const string& str)
+inline RequestStatus stringToRequestStatus(const string& inputString)
 {
-    if (str == "Pending")
+    if (inputString == "Pending")
     {
         return RequestStatus::PENDING;
     }
-    if (str == "Approved")
+    if (inputString == "Approved")
     {
         return RequestStatus::APPROVED;
     }
-    if (str == "Rejected")
+    if (inputString == "Rejected")
     {
         return RequestStatus::REJECTED;
     }
-    if (str == "Cancelled")
+    if (inputString == "Cancelled")
     {
         return RequestStatus::CANCELLED;
     }
@@ -116,13 +129,13 @@ inline string convertingPaymentStatusToString(PaymentStatus status)
         return "";
     }
 }
-inline PaymentStatus stringToPaymentStatus(const string& str)
+inline PaymentStatus stringToPaymentStatus(const string& inputString)
 {
-    if (str == "Pending")
+    if (inputString == "Pending")
     {
         return PaymentStatus::PENDING;
     }
-    if (str == "Verified")
+    if (inputString == "Verified")
     {
         return PaymentStatus::VERIFIED;
     }
@@ -151,22 +164,120 @@ inline string convertingPropertyStatusToString(PropertyStatus status)
         return "";
     }
 }
-inline PropertyStatus stringToPropertyStatus(const string& str)
+inline PropertyStatus stringToPropertyStatus(const string& inputString)
 {
-    if (str == "Available")
+    if (inputString == "Available")
     {
         return PropertyStatus::AVAILABLE;
     }
-    if (str == "Unavailable")
+    if (inputString == "Unavailable")
     {
         return PropertyStatus::UNAVAILABLE;
     }
-    if (str == "Sold")
+    if (inputString == "Sold")
     {
         return PropertyStatus::SOLD;
     }
     else
     {
         return PropertyStatus::AVAILABLE;
+    }
+}
+inline CategoryType stringToCategoryType(const string& inputString)
+{
+    if (inputString == "Showroom")
+    {
+        return CategoryType::SHOWROOM;
+    }
+    if (inputString == "Villa")
+    {
+        return CategoryType::VILLA;
+    }
+    if (inputString == "Flat")
+    {
+        return CategoryType::FLAT;
+    }
+    if (inputString == "Plot")
+    {
+        return CategoryType::PLOT;
+    }
+    else
+    {
+        return CategoryType::WAREHOUSE;
+    }
+}
+inline string convertingCategoryTypeToString(CategoryType category)
+{
+    switch (category)
+    {
+    case CategoryType::SHOWROOM:
+        return "Showroom";
+    case CategoryType::VILLA:
+        return "Villa";
+    case CategoryType::FLAT:
+        return "Flat";
+    case CategoryType::PLOT:
+        return "Plot";
+    case CategoryType::WAREHOUSE:
+        return "Warehouse";
+    default:
+        return "";
+    }
+}
+inline CategoryType ChoiceToCategoryType(const int& choice)
+{
+    if (choice == 1)
+    {
+        return CategoryType::SHOWROOM;
+    }
+    if (choice == 2)
+    {
+        return CategoryType::VILLA;
+    }
+    if (choice == 3)
+    {
+        return CategoryType::FLAT;
+    }
+    if (choice == 4)
+    {
+        return CategoryType::PLOT;
+    }
+    else
+    {
+        return CategoryType::WAREHOUSE;
+    }
+}
+inline string convertingPaymentTypeToString(PaymentType payment)
+{
+    switch (payment)
+    {
+    case PaymentType::FULL:
+        return "Full";
+    case PaymentType::ADVANCE:
+        return "Advance";
+    default:
+        return "";
+    }
+}
+inline PaymentType choiceToPaymentType(const int& choice)
+{
+    if (choice == 1)
+    {
+        return PaymentType::FULL;
+    }
+    if (choice == 2)
+    {
+        return PaymentType::ADVANCE;
+    }
+}
+inline PaymentType stringToPaymentType(const string& inputString)
+{
+    if (inputString == "Full")
+    {
+        return PaymentType::FULL;
+    }
+    if (inputString == "Advance")
+    {
+        return PaymentType::ADVANCE;
     }
 }

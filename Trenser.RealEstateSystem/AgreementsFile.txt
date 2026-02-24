@@ -1,2 +1,1 @@
-A01,P01,U01,U02,PR02,Property sold to buyer.,24-02-2026
-A02,P02,U01,U02,PR03,Property sold for 70000.,24-02-2026
+A01,P01,U01,U02,PR01,Property sold for 40000.,24-02-2026

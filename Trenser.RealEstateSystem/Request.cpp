@@ -4,9 +4,9 @@ string Request::getAgentId()
 {
 	return m_agentId;
 }
-string Request::getCustomerId()
+string Request::getBuyerId()
 {
-	return m_customerId;
+	return m_BuyerId;
 }
 string Request::getPropertyId()
 {

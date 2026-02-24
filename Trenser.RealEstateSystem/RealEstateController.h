@@ -142,4 +142,25 @@ public:
 
     string findUserNameById(string id);
     Property* validatePropertySelection(string& propertyId);
+
+    User* findUserById(string id);
+    Property* findPropertyById(string id);
+    Request* findRequestById(string id);
+    Payment* findPaymentById(string id);
+    bool isRequestProcessable(Request* request);
+    void displayPendingPayments(Agent* agent);
+    void completePaymentVerification(Payment* payment);
+    bool isPaymentAlreadyDone(string requestId);
+    void processPayment(User* user, Request* request);
+    void attachPaymentToUsers(Payment* payment);
+    bool isDuplicateRequest(User* user, string propertyId);
+    void createRequest(User* user, Property* property);
+    void approveAndRejectOthers(Request* approved, string agentId);
+    bool securityKeyCheck();
+    void createAndStoreProperty(string agentId, string propertyId, CategoryType category, double price);
+    void viewRequestsOfBuyer(User* user);
+    void viewRequestsOfAgent(User* user);
+    void displayBuyerAgreements(User* user);
+    void displayAgentAgreements(User* user);
+    bool handleRequestCancellation(Request* request, string requestId, User* user);
 };
