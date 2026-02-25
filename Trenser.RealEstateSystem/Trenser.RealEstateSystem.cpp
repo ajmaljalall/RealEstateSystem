@@ -1,7 +1,6 @@
 // Trenser.RealEstateSystem.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //----------------------------------------------Author : Ajmal J S----------------------------------------------
 //----------------------------------------------Date : 16-02-2026-----------------------------------------------
-
 #include <iostream>
 using namespace::std;
 #include "FileManager.h"
@@ -17,8 +16,9 @@ int main()
         controller.run();
         controller.saveData(); 
     }
-    catch (...)
+    catch (const exception& e)
     {
-        cout << "Exception : unknown exception" << endl;
+        cout << "Exception : " << e.what() << endl;
     }
 }
+

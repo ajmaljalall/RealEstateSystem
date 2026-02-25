@@ -58,7 +58,7 @@
       <Filter>Utility</Filter>
     </ClCompile>
     <ClCompile Include="Status.cpp">
-      <Filter>Models</Filter>
+      <Filter>Utility</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -93,7 +93,7 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Status.h">
-      <Filter>Models</Filter>
+      <Filter>Utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

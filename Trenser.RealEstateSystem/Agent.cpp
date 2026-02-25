@@ -1,7 +1,5 @@
 #include "Agent.h"
 
-const string Agent::AGENT = "Agent";
-
 string Agent::getAgentId()
 {
 	return m_agentId;

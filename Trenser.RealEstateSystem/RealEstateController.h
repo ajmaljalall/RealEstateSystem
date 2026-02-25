@@ -32,88 +32,97 @@ public:
     RealEstateController& operator=(const RealEstateController&) = delete;
     static RealEstateController& getInstanceDefault();
     static RealEstateController& getInstance(FileManager* fileManager);
-    
     ~RealEstateController();
-
+    void loadData();
+    void saveData();
     void reloadingDataToVectorsInClass();
     void reassignPropertiesToAgent();
     void reassignPropertiesToBuyer();
     void reassignRequestsToAgentAndBuyer();
     void reassignPaymentsToAgentAndBuyer();
     void reassignAgreementsToAgentAndBuyer();
-
     void run();
     void login();
-    int menuChoiceValidation();
     User* authenticateUser(const string& userId, const string& password);
     void userSession(User* currentUser);
-
-    void handleAdminUserManagement(User* user, int choice);
-    void handleAdminPropertyManagement(User* user, int choice);
-    void handleAdminReports(int choice);
-    void handleAdminAccountSettings(User* user, int choice);
-
-    void handleAgentPropertyManagement(User* user, int choice);
-    void handleAgentRequestManagement(User* user, int choice);
-    void handleAgentPaymentManagement(User* user, int choice);
-    void handleAgentAccountSettings(User* user, int choice);
-
-    void handleBuyerPropertySearch(int choice);
-    void handleBuyerRequests(User* user, int choice);
-    void handleBuyerPayments(User* user, int choice);
-    void handleBuyerAccountSettings(User* user, int choice);
-
-    string generateNextId(string prefix, int currentSize);
-    string generateUserId();
-    string generateRequestId();
-    string generatePropertyId();
-    string generatePaymentId();
-    string generateAgreementId();
-
     void registerUser();
     void registerAsBuyer();
     void registerAsAgent();
     void registerAsAdmin();
     void changeUserName(User* user);
     void changePassword(User* user);
-    void displayAllUsers();
-
-    Agent* findAgentById(string agentId);
-    Buyer* findBuyerById(string buyerId);
-
+    int menuChoiceValidation();
     void chooseOption(User* user, int& choice);
     void callAdminMenu(User* user, int& choice);
     void callAgentMenu(User* user, int& choice);
     void callBuyerMenu(User* user, int& choice);
-
+    void handleAdminUserManagement(User* user, int choice);
+    void handleAdminPropertyManagement(User* user, int choice);
+    void handleAdminReports(int choice);
+    void handleAdminAccountSettings(User* user, int choice);
+    void handleAgentPropertyManagement(User* user, int choice);
+    void handleAgentRequestManagement(User* user, int choice);
+    void handleAgentPaymentManagement(User* user, int choice);
+    void handleAgentAccountSettings(User* user, int choice);
+    void handleBuyerPropertySearch(int choice);
+    void handleBuyerRequests(User* user, int choice);
+    void handleBuyerPayments(User* user, int choice);
+    void handleBuyerAccountSettings(User* user, int choice);
+    string generateNextId(string prefix, int currentSize);
+    string generateUserId();
+    string generateRequestId();
+    string generatePropertyId();
+    string generatePaymentId();
+    string generateAgreementId();
     void removeAdmin(User* user);
+    bool securityKeyCheck();
     void removeBuyer();
     void removeAgent();
-
+    void displayAllUsers();
+    void displaySystemSummary();
     void addProperty(User* user);
-    void deleteProperty(User* user);
-    void viewRequests(User* user);
-    void approveRequest(User* user);
-    void rejectRequest(User* user);
-    void viewAddedProperties(User* user);
+    void createAndStoreProperty(string agentId, string propertyId, CategoryType category, double price);
     void viewAllProperty();
+    void searchPropertiesByAgentName();
+    void deleteProperty(User* user);
     void showAvailableProperties();
     void searchByCategory();
     void searchByPrice();
-    void requestToBuy(User* user);
-    void viewRequestHistory(User* user);
-    
-    void printRequestDetails(Request* requestPointer);
+    void viewAddedProperties(User* user);
     void viewOwnedProperty(User* user);
-    void displayAgreementDetails(Agreement* agreement);
+    void displaySoldProperties(User* user);
     void displayPropertyDetails(Property* property);
-    void displayPaymentDetails(Payment* payment);
-    
+    void requestToBuy(User* user);
+    Property* validatePropertySelection(string& propertyId);
+    void createRequest(User* user, Property* property);
+    void viewRequests(User* user);
+    void viewRequestsOfBuyer(User* user);
+    void viewRequestsOfAgent(User* user);
+    void approveRequest(User* user);
+    void approveAndRejectOthers(Request* approved, string agentId);
+    void rejectRequest(User* user);
+    void viewApprovedRequests(User* user);
+    void viewRequestHistory(User* user);
+    void cancelBuyerRequest(User* user);
+    void printRequestDetails(Request* requestPointer);
     void makePayment(User* user);
+    void processPayment(User* user, Request* request);
+    void attachPaymentToUsers(Payment* payment);
     void verifyPayment(User* user);
+    void completePaymentVerification(Payment* payment);
+    void displayPaymentDetails(Payment* payment);
+    void displayBuyerPaymentHistory(User* user);
+    void displayAgentPaymentHistory(User* user);
+    void displayAllPayments();
+    void displayPendingPayments(Agent* agent);
     void generateAgreement(User* user, string paymentId, string buyerId, string agentId, string propertyId, Buyer* buyer, Agent* agent);
     void displayAgreements(User* user);
-
+    void displayBuyerAgreements(User* user);
+    void displayAgentAgreements(User* user);
+    void displayAllAgreements();
+    void displayAgreementDetails(Agreement* agreement);
+    Agent* findAgentById(string agentId);
+    Buyer* findBuyerById(string buyerId);
     bool isUserIdAlreadyExists(string userId);
     bool isPropertyIdAlreadyExists(string propertyId);
     bool isRequestIdAlreadyExists(string requestId);
@@ -121,46 +130,14 @@ public:
     bool isValidPositivePrice(double price);
     bool isAgentIdValid(string agentId);
     bool isPaymentAlreadyVerified(string paymentId);
-
-    void searchPropertiesByAgentName();
-    void displayBuyerPaymentHistory(User* user);
-
-
-    void displaySystemSummary();
-    void displayAllPayments();
-    void displayAllAgreements();
-
-    void displayAgentPaymentHistory(User* user);
-    void displaySoldProperties(User* user);
-
-    void cancelBuyerRequest(User* user);
-    void viewApprovedRequests(User* user);
-    void viewRejectedRequests(User* user);
-
-    void loadData();
-    void saveData();
-
     string findUserNameById(string id);
-    Property* validatePropertySelection(string& propertyId);
-
     User* findUserById(string id);
     Property* findPropertyById(string id);
     Request* findRequestById(string id);
     Payment* findPaymentById(string id);
     bool isRequestProcessable(Request* request);
-    void displayPendingPayments(Agent* agent);
-    void completePaymentVerification(Payment* payment);
     bool isPaymentAlreadyDone(string requestId);
-    void processPayment(User* user, Request* request);
-    void attachPaymentToUsers(Payment* payment);
     bool isDuplicateRequest(User* user, string propertyId);
-    void createRequest(User* user, Property* property);
-    void approveAndRejectOthers(Request* approved, string agentId);
-    bool securityKeyCheck();
-    void createAndStoreProperty(string agentId, string propertyId, CategoryType category, double price);
-    void viewRequestsOfBuyer(User* user);
-    void viewRequestsOfAgent(User* user);
-    void displayBuyerAgreements(User* user);
-    void displayAgentAgreements(User* user);
     bool handleRequestCancellation(Request* request, string requestId, User* user);
+    bool isSetUserStatusToInactive(string userId);
 };

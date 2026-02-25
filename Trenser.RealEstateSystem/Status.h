@@ -3,6 +3,12 @@
 #include <string>
 using namespace std;
 
+static const string USERTYPEONE = "Admin";
+static const string USERTYPETWO = "Agent";
+static const string USERTYPETHREE = "Buyer";
+static const string ADDADMINSECURITYKEY = "T20200";
+static const string REMOVEADMINSECURITYKEY = "T10100";
+
 enum class UserStatus
 {
     ACTIVE,

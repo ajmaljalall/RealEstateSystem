@@ -1,7 +1,5 @@
 #include "Buyer.h"
 
-const string Buyer::BUYER = "Buyer";
-
 string Buyer::getBuyerId()
 {
 	return m_buyerId;
@@ -52,11 +50,9 @@ void Buyer::displayMenu()
         << "9. Display Agreements\n"
         << "10. Display Buyer Payment History\n"
         << "11. Cancel Request\n"
-        << "12. View Approved Requests\n"
-        << "13. View Rejected Requests\n"
-        << "14. Change User Name\n"
-        << "15. Change Password\n"
-        << "16. View Request History\n"
-        << "17. Search Property by Agent Name\n\n"
+        << "12. Change User Name\n"
+        << "13. Change Password\n"
+        << "14. View Request History\n"
+        << "15. Search Property by Agent Name\n\n"
         << "Enter your choice : ";
 }

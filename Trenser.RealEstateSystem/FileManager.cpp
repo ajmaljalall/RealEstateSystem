@@ -13,11 +13,11 @@ void FileManager::loadUsers(vector<User*>& users)
         getline(ss, password, ',');
         getline(ss, type, ',');
         getline(ss, status, ',');
-        if (type == Buyer::BUYER)
+        if (type == USERTYPETHREE)
         {
             users.push_back(new Buyer(id, id, name, password, type, stringToUserStatus(status)));
         }
-        else if (type == Agent::AGENT)
+        else if (type == USERTYPETWO)
         {
             users.push_back(new Agent(id, id, name, password, type, stringToUserStatus(status)));
         }
